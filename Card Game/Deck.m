@@ -18,34 +18,33 @@
 
 
 //Getter for cards
--(NSMutableArray *)cards
+- (NSMutableArray *)cards
 {
     if (!_cards) _cards = [[NSMutableArray alloc] init];
     return _cards;
 }
 
--(void)addCard:(Card *)card atTop:(BOOL)atTop
+- (void)addCard:(Card *)card atTop:(BOOL)atTop
 {
- if (!card) return;   
     if (atTop) {
-        //insertObject is method of nsmutablearray which inserts object at givin index
         [self.cards insertObject:card atIndex:0];
     } else {
-        //addObject = inserts at end of array
         [self.cards addObject:card];
     }
 }
 
 -(void)addCard:(Card *)card
 {
- // not used in this code
+ // not used in this code 
+    [self addCard:card atTop:NO];
 }
 
 - (Card *)drawRandomCard
 {
     Card *randomCard = nil;
-    if ([self.cards count]) {
-        unsigned index = arc4random() % [self.cards count];
+    
+    if (self.cards.count) {
+        unsigned index = arc4random() % self.cards.count;
         randomCard = self.cards[index];
         [self.cards removeObjectAtIndex:index];
     }

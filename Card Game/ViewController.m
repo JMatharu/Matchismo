@@ -22,7 +22,7 @@
 
 - (Deck *) deck
 {
-    if(_deck) _deck = [self createDeck];
+    if(!_deck) _deck = [self createDeck];
     return _deck;
 }
 
